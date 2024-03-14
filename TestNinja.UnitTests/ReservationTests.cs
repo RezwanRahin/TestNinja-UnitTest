@@ -4,7 +4,7 @@ using System;
 namespace TestNinja.UnitTests
 {
 	[TestClass]
-	public class UnitTest1
+	public class ReservationTests
 	{
 		[TestMethod]
 		public void TestMethod1()
