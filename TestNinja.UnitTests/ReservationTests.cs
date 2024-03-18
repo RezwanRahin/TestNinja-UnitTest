@@ -7,7 +7,7 @@ namespace TestNinja.UnitTests
 	public class ReservationTests
 	{
 		[TestMethod]
-		public void TestMethod1()
+		public void CanBeCancelledBy_UserIsAdmin_ReturnsTrue()
 		{
 		}
 	}
