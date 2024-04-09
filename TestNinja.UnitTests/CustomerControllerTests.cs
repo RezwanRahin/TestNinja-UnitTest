@@ -19,5 +19,19 @@ namespace TestNinja.UnitTests
 			// NotFound or one of its derivatives
 			// Assert.That(result, Is.InstanceOf<NotFound>());
 		}
+
+		[Test]
+		public void GetCustomer_IdIsNotZero_ReturnOk()
+		{
+			var controller = new CustomerController();
+
+			var result = controller.GetCustomer(1);
+
+			// Ok
+			Assert.That(result, Is.TypeOf<Ok>());
+
+			// Ok or one of its derivatives
+			// Assert.That(result, Is.InstanceOf<Ok>());
+		}
 	}
 }
