@@ -17,11 +17,9 @@ namespace TestNinja.UnitTests
 		[Test]
 		public void Log_WhenCalled_SetTheLastErrorProperty()
 		{
-			var logger = new ErrorLogger();
+			_logger.Log("a");
 
-			logger.Log("a");
-
-			Assert.That(logger.LastError, Is.EqualTo("a"));
+			Assert.That(_logger.LastError, Is.EqualTo("a"));
 		}
 
 		[Test]
@@ -30,9 +28,7 @@ namespace TestNinja.UnitTests
 		[TestCase(" ")]
 		public void Log_InvalidError_ThrowArgumentNullException(string error)
 		{
-			var logger = new ErrorLogger();
-
-			Assert.That(() => logger.Log(error), Throws.ArgumentNullException);
+			Assert.That(() => _logger.Log(error), Throws.ArgumentNullException);
 		}
 	}
 }
