@@ -29,5 +29,13 @@ namespace TestNinja.UnitTests
 
 			Assert.That(result, Is.EqualTo("Buzz"));
 		}
+
+		[Test]
+		public void GetOutput_InputIsNorDivisibleBy3Or5_ReturnTheSameNumber()
+		{
+			var result = FizzBuzz.GetOutput(1);
+
+			Assert.That(result, Is.EqualTo("1"));
+		}
 	}
 }
