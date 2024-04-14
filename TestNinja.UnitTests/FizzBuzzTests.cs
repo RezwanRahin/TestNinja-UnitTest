@@ -21,5 +21,13 @@ namespace TestNinja.UnitTests
 
 			Assert.That(result, Is.EqualTo("Fizz"));
 		}
+
+		[Test]
+		public void GetOutput_InputIsDivisibleBy5Only_ReturnBuzz()
+		{
+			var result = FizzBuzz.GetOutput(5);
+
+			Assert.That(result, Is.EqualTo("Buzz"));
+		}
 	}
 }
