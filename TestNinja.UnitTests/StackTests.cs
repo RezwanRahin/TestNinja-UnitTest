@@ -54,5 +54,20 @@ namespace TestNinja.UnitTests
 			// Assert
 			Assert.That(result, Is.EqualTo("c"));
 		}
+
+		[Test]
+		public void Pop_NonEmptyStack_RemoveTopItem()
+		{
+			// Arrange
+			_stack.Push("a");
+			_stack.Push("b");
+			_stack.Push("c");
+
+			// Act
+			_stack.Pop();
+
+			// Assert
+			Assert.That(_stack.Count, Is.EqualTo(2));
+		}
 	}
 }
