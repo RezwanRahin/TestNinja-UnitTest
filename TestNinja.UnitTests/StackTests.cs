@@ -19,5 +19,11 @@ namespace TestNinja.UnitTests
 		{
 			Assert.That(_stack.Count, Is.EqualTo(0));
 		}
+
+		[Test]
+		public void Push_ArgIsNull_ThrowArgumentNullException()
+		{
+			Assert.That(() => _stack.Push(null), Throws.ArgumentNullException);
+		}
 	}
 }
