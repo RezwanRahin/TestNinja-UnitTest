@@ -75,5 +75,20 @@ namespace TestNinja.UnitTests
 		{
 			Assert.That(() => _stack.Peek(), Throws.InvalidOperationException);
 		}
+
+		[Test]
+		public void Peek_NonEmptyStack_ReturnTopItem()
+		{
+			// Arrange
+			_stack.Push("a");
+			_stack.Push("b");
+			_stack.Push("c");
+
+			// Act
+			var result = _stack.Peek();
+
+			// Assert
+			Assert.That(result, Is.EqualTo("c"));
+		}
 	}
 }
