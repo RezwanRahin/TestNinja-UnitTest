@@ -90,5 +90,20 @@ namespace TestNinja.UnitTests
 			// Assert
 			Assert.That(result, Is.EqualTo("c"));
 		}
+
+		[Test]
+		public void Peek_NonEmptyStack_DoesNotRemoveTopItem()
+		{
+			// Arrange
+			_stack.Push("a");
+			_stack.Push("b");
+			_stack.Push("c");
+
+			// Act
+			_stack.Peek();
+
+			// Assert
+			Assert.That(_stack.Count, Is.EqualTo(3));
+		}
 	}
 }
