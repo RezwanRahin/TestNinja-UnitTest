@@ -13,5 +13,11 @@ namespace TestNinja.UnitTests
 		{
 			_stack = new Stack<string>();
 		}
+
+		[Test]
+		public void Count_EmptyStack_ReturnZero()
+		{
+			Assert.That(_stack.Count, Is.EqualTo(0));
+		}
 	}
 }
