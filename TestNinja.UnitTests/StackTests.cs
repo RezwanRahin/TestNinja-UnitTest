@@ -69,5 +69,11 @@ namespace TestNinja.UnitTests
 			// Assert
 			Assert.That(_stack.Count, Is.EqualTo(2));
 		}
+
+		[Test]
+		public void Peek_EmptyStack_ThrowInvalidOperationException()
+		{
+			Assert.That(() => _stack.Peek(), Throws.InvalidOperationException);
+		}
 	}
 }
