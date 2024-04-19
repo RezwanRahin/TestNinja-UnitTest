@@ -6,7 +6,7 @@ namespace TestNinja.UnitTests
 	{
 		public string Read(string path)
 		{
-			throw new System.NotImplementedException();
+			return "";
 		}
 	}
 }
