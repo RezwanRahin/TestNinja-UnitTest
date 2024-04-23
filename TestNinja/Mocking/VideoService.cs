@@ -9,6 +9,13 @@ namespace TestNinja.Mocking
 {
     public class VideoService
     {
+        public IFileReader FileReader { get; set; }
+
+        public VideoService()
+        {
+            FileReader = new FileReader();
+        }
+
         public string ReadVideoTitle(IFileReader fileReader)
         {
             var str = fileReader.Read("video.txt");
