@@ -7,15 +7,22 @@ namespace TestNinja.UnitTests.Mocking
 	[TestFixture]
 	public class VideoServiceTests
 	{
+		private VideoService _service;
+		private Mock<IFileReader> _fileReader;
+
+		[SetUp]
+		public void SetUp()
+		{
+			_fileReader = new Mock<IFileReader>();
+			_service = new VideoService(_fileReader.Object);
+		}
+
 		[Test]
 		public void ReadVideoTitle_EmptyFile_ReturnError()
 		{
-			var fileReader = new Mock<IFileReader>();
-			fileReader.Setup(fr => fr.Read("video.txt")).Returns("");
+			_fileReader.Setup(fr => fr.Read("video.txt")).Returns("");
 
-			var service = new VideoService(fileReader.Object);
-
-			var result = service.ReadVideoTitle();
+			var result = _service.ReadVideoTitle();
 
 			Assert.That(result, Does.Contain("error").IgnoreCase);
 		}
