@@ -13,8 +13,13 @@
         }
     }
 
-    public class Customer
-    {
-        public bool IsGold { get; set; }
-    }
+	public interface ICustomer
+	{
+		bool IsGold { get; set; }
+	}
+
+	public class Customer : ICustomer
+	{
+		public bool IsGold { get; set; }
+	}
 }
