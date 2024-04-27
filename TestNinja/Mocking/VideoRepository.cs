@@ -3,7 +3,12 @@ using System.Linq;
 
 namespace TestNinja.Mocking
 {
-	public class VideoRepository
+	public interface IVideoRepository
+	{
+		IEnumerable<Video> GetUnprocessedVideosAsCsv();
+	}
+
+	public class VideoRepository : IVideoRepository
 	{
 		public IEnumerable<Video> GetUnprocessedVideosAsCsv()
 		{
