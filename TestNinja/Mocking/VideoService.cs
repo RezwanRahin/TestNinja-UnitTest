@@ -10,10 +10,12 @@ namespace TestNinja.Mocking
     public class VideoService
     {
         private IFileReader _fileReader;
+        private IVideoRepository _repository;
 
-        public VideoService(IFileReader fileReader = null)
+        public VideoService(IFileReader fileReader = null, IVideoRepository repository = null)
         {
             _fileReader = fileReader ?? new FileReader();
+            _repository = repository;
         }
 
         public string ReadVideoTitle()
