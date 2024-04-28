@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using TestNinja.Mocking;
 
 namespace TestNinja.UnitTests.Mocking
@@ -9,12 +10,14 @@ namespace TestNinja.UnitTests.Mocking
 	{
 		private VideoService _service;
 		private Mock<IFileReader> _fileReader;
+		private Mock<IVideoRepository> _repository;
 
 		[SetUp]
 		public void SetUp()
 		{
 			_fileReader = new Mock<IFileReader>();
-			_service = new VideoService(_fileReader.Object);
+			_repository = new Mock<IVideoRepository>();
+			_service = new VideoService(_fileReader.Object, _repository.Object);
 		}
 
 		[Test]
@@ -25,6 +28,16 @@ namespace TestNinja.UnitTests.Mocking
 			var result = _service.ReadVideoTitle();
 
 			Assert.That(result, Does.Contain("error").IgnoreCase);
+		}
+
+		[Test]
+		public void GetUnprocessedVideosAsCsv_AllVideosAreProcessed_ReturnEmptyString()
+		{
+			_repository.Setup(r => r.GetUnprocessedVideosAsCsv()).Returns(new List<Video>());
+
+			var result = _service.GetUnprocessedVideosAsCsv();
+
+			Assert.That(result, Is.EqualTo(""));
 		}
 	}
 }
