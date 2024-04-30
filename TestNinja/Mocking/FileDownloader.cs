@@ -2,7 +2,12 @@
 
 namespace TestNinja.Mocking
 {
-	public class FileDownloader
+	public interface IFileDownloader
+	{
+		void DownloadFile(string url, string path);
+	}
+
+	public class FileDownloader : IFileDownloader
 	{
 		public void DownloadFile(string url, string path)
 		{
