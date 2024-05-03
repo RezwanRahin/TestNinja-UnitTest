@@ -1,6 +1,11 @@
 ﻿namespace TestNinja.Mocking
 {
-	public class EmployeeStorage
+	public interface IEmployeeStorage
+	{
+		void DeleteEmployee(int id);
+	}
+
+	public class EmployeeStorage : IEmployeeStorage
 	{
 		private EmployeeContext _db;
 
