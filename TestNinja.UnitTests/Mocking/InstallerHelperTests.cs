@@ -27,5 +27,13 @@ namespace TestNinja.UnitTests.Mocking
 
 			Assert.That(result, Is.False);
 		}
+
+		[Test]
+		public void DownloadInstaller_DownloadCompletes_ReturnTrue()
+		{
+			var result = _installerHelper.DownloadInstaller("customer", "installer");
+
+			Assert.That(result, Is.True);
+		}
 	}
 }
