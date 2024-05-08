@@ -2,7 +2,12 @@
 
 namespace TestNinja.Mocking
 {
-	public class BookingRepository
+	public interface IBookingRepository
+	{
+		IQueryable<Booking> GetActiveBookings(int? excludedBookingId = null);
+	}
+
+	public class BookingRepository : IBookingRepository
 	{
 		public IQueryable<Booking> GetActiveBookings(int? excludedBookingId = null)
 		{
