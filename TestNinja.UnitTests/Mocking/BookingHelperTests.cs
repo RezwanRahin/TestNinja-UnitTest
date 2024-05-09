@@ -3,7 +3,7 @@
 namespace TestNinja.UnitTests.Mocking
 {
 	[TestFixture]
-	public class BookingHelperTests
+	public class BookingHelperTests_OverlappingBookingsExistTests
 	{
 	}
 }
