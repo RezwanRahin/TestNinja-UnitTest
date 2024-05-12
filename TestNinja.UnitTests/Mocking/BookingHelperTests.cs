@@ -63,6 +63,11 @@ namespace TestNinja.UnitTests.Mocking
 			return dateTime.AddDays(-days);
 		}
 
+		private DateTime After(DateTime dateTime)
+		{
+			return dateTime.AddDays(1);
+		}
+
 		private DateTime ArriveOn(int year, int month, int day)
 		{
 			return new DateTime(year, month, day, 14, 0, 0);
