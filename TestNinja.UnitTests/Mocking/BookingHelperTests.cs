@@ -34,26 +34,13 @@ namespace TestNinja.UnitTests.Mocking
 		[Test]
 		public void BookingStartsAndFinishesBeforeAnExistingBooking_ReturnEmptyString()
 		{
-			var repository = new Mock<IBookingRepository>();
-			var bookings = new List<Booking> {
-				new Booking
-				{
-					Id = 2,
-					ArrivalDate = new DateTime(2017, 1, 15, 14, 0, 0),
-					DepartureDate = new DateTime(2017, 1, 20, 10, 0, 0),
-					Reference = "a"
-				}
-			};
-			repository.Setup(m => m.GetActiveBookings(1)).Returns(bookings.AsQueryable);
-
-
 			var booking = new Booking
 			{
 				Id = 1,
-				ArrivalDate = new DateTime(2017, 1, 10, 14, 0, 0),
-				DepartureDate = new DateTime(2017, 1, 14, 10, 0, 0),
+				ArrivalDate = Before(_existingBooking.ArrivalDate, days: 2),
+				DepartureDate = Before(_existingBooking.ArrivalDate)
 			};
-			var result = BookingHelper.OverlappingBookingsExist(booking, repository.Object);
+			var result = BookingHelper.OverlappingBookingsExist(booking, _repository.Object);
 
 			Assert.That(result, Is.Empty);
 		}
