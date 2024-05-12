@@ -58,6 +58,11 @@ namespace TestNinja.UnitTests.Mocking
 			Assert.That(result, Is.Empty);
 		}
 
+		private DateTime Before(DateTime dateTime, int days = 1)
+		{
+			return dateTime.AddDays(-days);
+		}
+
 		private DateTime ArriveOn(int year, int month, int day)
 		{
 			return new DateTime(year, month, day, 14, 0, 0);
