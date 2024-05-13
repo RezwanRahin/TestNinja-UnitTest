@@ -120,6 +120,22 @@ namespace TestNinja.UnitTests.Mocking
 			Assert.That(result, Is.Empty);
 		}
 
+		[Test]
+		public void BookingOverlapButNewBookingIsCancelled_ReturnEmptyString()
+		{
+			var booking = new Booking
+			{
+				Id = 1,
+				ArrivalDate = After(_existingBooking.ArrivalDate),
+				DepartureDate = After(_existingBooking.DepartureDate),
+				Status = "Cancelled"
+			};
+
+			var result = BookingHelper.OverlappingBookingsExist(booking, _repository.Object);
+
+			Assert.That(result, Is.Empty);
+		}
+
 		private DateTime Before(DateTime dateTime, int days = 1)
 		{
 			return dateTime.AddDays(-days);
