@@ -75,6 +75,21 @@ namespace TestNinja.UnitTests.Mocking
 			Assert.That(result, Is.EqualTo(_existingBooking.Reference));
 		}
 
+		[Test]
+		public void BookingStartsAndFinishesInTheMiddleAnExistingBooking_ReturnExistingBookingsReference()
+		{
+			var booking = new Booking
+			{
+				Id = 1,
+				ArrivalDate = After(_existingBooking.ArrivalDate),
+				DepartureDate = Before(_existingBooking.DepartureDate)
+			};
+
+			var result = BookingHelper.OverlappingBookingsExist(booking, _repository.Object);
+
+			Assert.That(result, Is.EqualTo(_existingBooking.Reference));
+		}
+
 		private DateTime Before(DateTime dateTime, int days = 1)
 		{
 			return dateTime.AddDays(-days);
