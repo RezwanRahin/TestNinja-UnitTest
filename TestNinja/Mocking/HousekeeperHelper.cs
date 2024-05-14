@@ -10,7 +10,7 @@ namespace TestNinja.Mocking
     {
         private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
 
-        public static bool SendStatementEmails(DateTime statementDate)
+        public bool SendStatementEmails(DateTime statementDate)
         {
             var housekeepers = UnitOfWork.Query<Housekeeper>();
 
