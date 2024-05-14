@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TestNinja.Mocking
 {
-    public static class HousekeeperHelper
+    public class HousekeeperHelper
     {
         private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
 
