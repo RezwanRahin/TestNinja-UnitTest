@@ -8,7 +8,13 @@ namespace TestNinja.Mocking
 {
     public class HousekeeperHelper
     {
+        private readonly IUnitOfWork _unitOfWork;
         private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
+
+        public HousekeeperHelper(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
         public bool SendStatementEmails(DateTime statementDate)
         {
