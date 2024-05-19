@@ -47,5 +47,15 @@ namespace TestNinja.UnitTests.Mocking
 
 			_statementGenerator.Verify(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate));
 		}
+
+		[Test]
+		public void SendStatementEmails_HouseKeepersEmailIsNull_ShouldNotGenerateStatements()
+		{
+			_houseKeeper.Email = null;
+
+			_service.SendStatementEmails(_statementDate);
+
+			_statementGenerator.Verify(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate), Times.Never);
+		}
 	}
 }
