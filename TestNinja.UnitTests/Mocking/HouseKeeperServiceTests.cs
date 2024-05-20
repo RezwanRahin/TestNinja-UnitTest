@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
@@ -16,7 +16,7 @@ namespace TestNinja.UnitTests.Mocking
 		private Mock<IXtraMessageBox> _messageBox;
 		private DateTime _statementDate = new DateTime(2017, 1, 1);
 		private Housekeeper _houseKeeper;
-		private readonly string _statementFileName = "filename";
+		private string _statementFileName;
 
 		[SetUp]
 		public void SetUp()
