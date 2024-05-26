@@ -9,10 +9,12 @@ namespace TestNinja.Mocking
     public class HousekeeperHelper
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IStatementGenerator _statementGenerator;
 
-        public HousekeeperHelper(IUnitOfWork unitOfWork)
+        public HousekeeperHelper(IUnitOfWork unitOfWork, IStatementGenerator statementGenerator)
         {
             _unitOfWork = unitOfWork;
+            _statementGenerator = statementGenerator;
         }
 
         public bool SendStatementEmails(DateTime statementDate)
