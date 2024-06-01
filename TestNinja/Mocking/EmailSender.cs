@@ -5,7 +5,12 @@ using System.Text;
 
 namespace TestNinja.Mocking
 {
-	public class EmailSender
+	public interface IEmailSender
+	{
+		void EmailFile(string emailAddress, string emailBody, string filename, string subject);
+	}
+
+	public class EmailSender : IEmailSender
 	{
 		public void EmailFile(string emailAddress, string emailBody, string filename, string subject)
 		{
