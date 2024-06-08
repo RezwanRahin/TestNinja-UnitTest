@@ -7,12 +7,17 @@ namespace TestNinja.Mocking
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStatementGenerator _statementGenerator;
         private readonly IEmailSender _emailSender;
+        private readonly IXtraMessageBox _messageBox;
 
-        public HousekeeperHelper(IUnitOfWork unitOfWork, IStatementGenerator statementGenerator, IEmailSender emailSender)
+        public HousekeeperHelper(IUnitOfWork unitOfWork,
+            IStatementGenerator statementGenerator,
+            IEmailSender emailSender,
+            IXtraMessageBox messageBox)
         {
             _unitOfWork = unitOfWork;
             _statementGenerator = statementGenerator;
             _emailSender = emailSender;
+            _messageBox = messageBox;
         }
 
         public bool SendStatementEmails(DateTime statementDate)
