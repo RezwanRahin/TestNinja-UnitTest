@@ -43,30 +43,9 @@ namespace TestNinja.UnitTests.Mocking
 		[Test]
 		public void SendStatementEmails_WhenCalled_GenerateStatements()
 		{
-			var unitOfWork = new Mock<IUnitOfWork>();
+			_service.SendStatementEmails(_statementDate);
 
-			var housekeepers = new List<Housekeeper>
-			{
-				new Housekeeper
-				{
-					Email = "a",
-					FullName = "b",
-					Oid = 1,
-					StatementEmailBody = "c"
-				}
-			};
-			unitOfWork.Setup(u => u.Query<Housekeeper>()).Returns(housekeepers.AsQueryable);
-
-			var statementGenerator = new Mock<IStatementGenerator>();
-			var emailSender = new Mock<IEmailSender>();
-			var messageBox = new Mock<IXtraMessageBox>();
-
-			var service = new HouseKeeperService(unitOfWork.Object, statementGenerator.Object, emailSender.Object, messageBox.Object);
-
-
-			service.SendStatementEmails(new DateTime(2017, 1, 1));
-
-			statementGenerator.Verify(s => s.SaveStatement(1, "b", new DateTime(2017, 1, 1)));
+			_statementGenerator.Verify(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate));
 		}
 	}
 }
