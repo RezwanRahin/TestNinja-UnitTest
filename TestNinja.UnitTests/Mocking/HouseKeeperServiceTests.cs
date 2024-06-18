@@ -16,6 +16,7 @@ namespace TestNinja.UnitTests.Mocking
 		private Mock<IXtraMessageBox> _messageBox;
 		private DateTime _statementDate = new DateTime(2017, 1, 1);
 		private Housekeeper _houseKeeper;
+		private readonly string _statementFileName = "filename";
 
 		[SetUp]
 		public void SetUp()
@@ -89,6 +90,16 @@ namespace TestNinja.UnitTests.Mocking
 			_service.SendStatementEmails(_statementDate);
 
 			_statementGenerator.Verify(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate), Times.Never);
+		}
+
+		[Test]
+		public void SendStatementEmails_WhenCalled_EmailTheStatement()
+		{
+			_statementGenerator.Setup(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate)).Returns(_statementFileName);
+
+			_service.SendStatementEmails(_statementDate);
+
+			_emailSender.Verify(e => e.EmailFile(_houseKeeper.Email, _houseKeeper.StatementEmailBody, _statementFileName, It.IsAny<string>()));
 		}
 	}
 }
