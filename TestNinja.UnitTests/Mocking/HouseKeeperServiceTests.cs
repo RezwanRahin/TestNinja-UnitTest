@@ -101,5 +101,15 @@ namespace TestNinja.UnitTests.Mocking
 
 			_emailSender.Verify(e => e.EmailFile(_houseKeeper.Email, _houseKeeper.StatementEmailBody, _statementFileName, It.IsAny<string>()));
 		}
+
+		[Test]
+		public void SendStatementEmails_StatementFileNameIsNull_ShouldNotEmailTheStatement()
+		{
+			_statementGenerator.Setup(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate)).Returns(() => null);
+
+			_service.SendStatementEmails(_statementDate);
+
+			_emailSender.Verify(e => e.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+		}
 	}
 }
