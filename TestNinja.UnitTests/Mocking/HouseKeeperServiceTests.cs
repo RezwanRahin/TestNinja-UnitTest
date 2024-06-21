@@ -121,5 +121,15 @@ namespace TestNinja.UnitTests.Mocking
 
 			_emailSender.Verify(e => e.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
 		}
+
+		[Test]
+		public void SendStatementEmails_StatementFileNameIsWhitespace_ShouldNotEmailTheStatement()
+		{
+			_statementGenerator.Setup(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate)).Returns(" ");
+
+			_service.SendStatementEmails(_statementDate);
+
+			_emailSender.Verify(e => e.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+		}
 	}
 }
