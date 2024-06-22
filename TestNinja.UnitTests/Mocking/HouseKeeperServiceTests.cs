@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
@@ -34,7 +34,10 @@ namespace TestNinja.UnitTests.Mocking
 
 			unitOfWork.Setup(u => u.Query<Housekeeper>()).Returns(housekeepers.AsQueryable);
 
+			_statementFileName = "filename";
 			_statementGenerator = new Mock<IStatementGenerator>();
+			_statementGenerator.Setup(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate)).Returns(() => _statementFileName);
+
 			_emailSender = new Mock<IEmailSender>();
 			_messageBox = new Mock<IXtraMessageBox>();
 
