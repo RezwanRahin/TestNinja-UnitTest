@@ -106,7 +106,7 @@ namespace TestNinja.UnitTests.Mocking
 		[Test]
 		public void SendStatementEmails_StatementFileNameIsNull_ShouldNotEmailTheStatement()
 		{
-			_statementGenerator.Setup(s => s.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate)).Returns(() => null);
+			_statementFileName = null;
 
 			_service.SendStatementEmails(_statementDate);
 
