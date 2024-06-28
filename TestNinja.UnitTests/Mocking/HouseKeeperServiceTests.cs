@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
@@ -100,7 +100,7 @@ namespace TestNinja.UnitTests.Mocking
 		{
 			_service.SendStatementEmails(_statementDate);
 
-			_emailSender.Verify(e => e.EmailFile(_houseKeeper.Email, _houseKeeper.StatementEmailBody, _statementFileName, It.IsAny<string>()));
+			VerifyEmailSent();
 		}
 
 		[Test]
