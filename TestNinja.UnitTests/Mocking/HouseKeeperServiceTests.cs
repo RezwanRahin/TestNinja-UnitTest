@@ -137,5 +137,10 @@ namespace TestNinja.UnitTests.Mocking
 		{
 			_emailSender.Verify(e => e.EmailFile(_houseKeeper.Email, _houseKeeper.StatementEmailBody, _statementFileName, It.IsAny<string>()));
 		}
+
+		private void VerifyEmailNotSent()
+		{
+			_emailSender.Verify(e => e.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+		}
 	}
 }
