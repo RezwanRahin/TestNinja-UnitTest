@@ -110,7 +110,7 @@ namespace TestNinja.UnitTests.Mocking
 
 			_service.SendStatementEmails(_statementDate);
 
-			_emailSender.Verify(e => e.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+			VerifyEmailNotSent();
 		}
 
 		[Test]
