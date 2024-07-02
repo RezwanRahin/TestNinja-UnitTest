@@ -133,6 +133,16 @@ namespace TestNinja.UnitTests.Mocking
 			VerifyEmailNotSent();
 		}
 
+		[Test]
+		public void SendStatementEmails_EmailSendingFails_DisplayAMessageBox()
+		{
+			_emailSender.Setup(e => e.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Throws<Exception>();
+
+			_service.SendStatementEmails(_statementDate);
+
+			_messageBox.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButtons.OK));
+		}
+
 		private void VerifyEmailSent()
 		{
 			_emailSender.Verify(e => e.EmailFile(_houseKeeper.Email, _houseKeeper.StatementEmailBody, _statementFileName, It.IsAny<string>()));
